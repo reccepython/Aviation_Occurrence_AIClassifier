@@ -30,7 +30,7 @@ Determines if an event is an "Incident" or "Serious Incident"
 # Dataset
 X_predict = pd.DataFrame()
 data = pd.DataFrame()
-data = pd.read_excel("C:/Users/BRYAN SIOW/Desktop/Python Pi/Python3/pythonprojectsWIN/TSIB_AI/CaseDatabase.xlsx")
+data = pd.read_excel("C:/Users/BRYAN SIOW/Desktop/Python Pi/Github/Aviation_Occurrence_AIClassifier/CaseDatabase.xlsx")
 data.drop('No', axis=1, inplace=True)
 X = data.iloc[:,:-2].values
 Y = data['Inc_SInc']
