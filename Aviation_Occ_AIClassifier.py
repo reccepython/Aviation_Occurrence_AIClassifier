@@ -29,7 +29,7 @@ Determines if an event is an "Incident" or "Serious Incident"
 # Dataset
 X_predict = pd.DataFrame()
 data = pd.DataFrame()
-data = pd.read_csv("https://github.com/reccepython/Aviation_Occurrence_AIClassifier/blob/main/CaseDatabase.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/reccepython/Aviation_Occurrence_AIClassifier/main/CaseDatabase.csv")
 data.drop('No', axis=1, inplace=True)
 X = data.iloc[:,:-2].values
 Y = data['Inc_SInc']
