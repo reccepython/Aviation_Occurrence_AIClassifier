@@ -1,1 +1,1 @@
-﻿web: sh setup.sh && streamlit run Aviation_Occ_AIClassifier.py
+﻿web: streamlit run --server.enableCORS false --server.port $PORT Aviation_Occ_AIClassifier.py
