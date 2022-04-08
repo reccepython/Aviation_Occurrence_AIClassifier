@@ -35,12 +35,6 @@ X = data.iloc[:,:-2].values
 Y = data['Inc_SInc']
 
 
-# Subheader
-st.subheader ('Database Parameters:')
-
-st.dataframe(data)
-st.write(data.describe())
-
 
 # Create training and test split
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=1, stratify=Y)
@@ -85,10 +79,19 @@ def get_user_input():
     features = pd.DataFrame(user_data, index = [0])
     return features
 
+
+# Store user inputs at temporary location
 user_input = get_user_input()
 
+# For main page, use non-zero user inputs
+user_input_mainpage = user_input.T[user_input.any()].T
+user_input_mainpage = user_input_mainpage.transpose()
+
+
 st.subheader('User Inputs:')
-st.write (user_input)
+# st.write (user_input)
+st.table (user_input_mainpage)
+
 
 
 # Instantiate the Support Vector Classifier (SVC)
@@ -112,14 +115,61 @@ print(confusion_matrix(SVC_prediction, y_test))
 
 
 # Show model accuracy on app
-st.subheader('Model Accuracy:')
-st.write(str(accuracy_score(SVC_prediction, y_test)))
-
+accuracy = str(round(accuracy_score(SVC_prediction, y_test)*100, 1))
 
 # Show the prediction
 X_predict = sc.transform(user_input)
 Y_predict = svc.predict(X_predict)
 
-st.subheader("""Classification (predicted):
-0 - Incident, 1 - Serious Incident""")
+if user_input_mainpage.empty:
+    Y_predict = str('No input has been provided yet.')
+
+if Y_predict == 1:
+    Y_predict = str('a Serious Incident')
+elif Y_predict == 0 :
+    Y_predict = str('an Incident')
+
+
+st.subheader(f"""Classification (predicted up to {accuracy}% accuracy):
+The occurrence is:""")
 st.write(Y_predict)
+
+
+# Streamlit code (ERC section)
+st.title("""ICAO Serious Incident Classification Method
+Use this method in conjunction with the TSIB AI Occurrence Classifier.
+If the result between the AI Classifier and the ICAO method differs, take the more severe classification.""")
+
+option1 = st.selectbox(
+     'Was there a credible scenario by which this occurrence could have escalated to an "Accident"?',
+     ('No', 'Yes'))
+
+st.write('Could have escalated to an accident:', option1)
+
+option2 = st.selectbox(
+     'After assessing the remaining defences between this occurrence and the potential credible accident, was the defences "Effective - several defences prevented accident" or "Limited - few or no defences and accident only avoided due to luck"?',
+     ('Effective', 'Limited'))
+
+st.write('Remaining defences were:', option2)
+
+
+if option1 == 'No':
+    icao_ans = str('an Incident')
+elif (option1 == 'Yes') and (option2 == 'Effective'):
+    icao_ans = str('an Incident')
+elif (option1 == 'Yes') and (option2 == 'Limited'):
+    icao_ans = str('a Serious Incident')
+
+st.subheader(f"""ICAO Classification Method:
+The occurrence is:""")
+st.write(icao_ans)
+
+print(icao_ans)
+print(Y_predict)
+
+
+if (Y_predict != icao_ans) and (Y_predict == 'No input has been provided yet.'):
+    st.subheader(""" """)
+elif Y_predict != icao_ans:
+    st.subheader("""**_There is a difference detected between the AI Classifier and the ICAO Classification Method_**""")
+
