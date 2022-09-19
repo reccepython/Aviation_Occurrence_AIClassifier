@@ -36,7 +36,7 @@ Y = data['Inc_SInc']
 
 
 # Create training and test split
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.33, random_state=1, stratify=Y)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.25, random_state=2, stratify=Y)
 
 
 # Get user input parameters
@@ -78,7 +78,7 @@ def get_user_input():
     Flight_Performance = st.sidebar.slider('Flight Performance', 0,1)	
     InflightLossOfControl_Stall = st.sidebar.slider('Loss Of Control During Flight ', 0,1)	
     MinSafeAltitude = st.sidebar.slider('Minimal Safe Altitude', 0,1)	
-    LandingConfig = st.sidebar.slider('Landing Configuration Issues', 0,1)	
+    LandingConfig = st.sidebar.slider('Landing Configuration Or Performance Issues', 0,1)	
     Crew_Resource = st.sidebar.slider('Flight Crew Resourse Issues', 0,1)	
     Crew_Comms = st.sidebar.slider('Flight Crew Communications Issues', 0,1)	
     Crew_Actions = st.sidebar.slider('Flight Crew Actions', 0,1)	
@@ -143,7 +143,7 @@ def get_user_input():
         'Flight Performance' : Flight_Performance,	
         'Loss Of Control During Flight' : InflightLossOfControl_Stall,	
         'Minimal Safe Altitude' : MinSafeAltitude, 
-        'Landing Configuration Issues' : LandingConfig, 
+        'Landing Configuration Or Performance Issues' : LandingConfig, 
         'Flight Crew Resourse Issues' : Crew_Resource, 
         'Flight Crew Communications Issues' : Crew_Comms, 
         'Flight Crew Actions' : Crew_Actions, 
@@ -238,7 +238,7 @@ st.write(Y_predict)
 # Streamlit code (ERC section)
 st.title("""ICAO Serious Incident Classification Method
 Use this method in conjunction with the TSIB AI Occurrence Classifier.
-If the result between the AI Classifier and the ICAO method differs, take the more severe classification.""")
+If the result between the AI Classifier and the ICAO method differs, consider if the more severe classification is warranted.""")
 
 option1 = st.selectbox(
      'Was there a credible scenario by which this occurrence could have escalated to an "Accident"?',
