@@ -42,138 +42,155 @@ X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.25, random
 # Get user input parameters
 st.sidebar.title('User Input Parameters:')
 st.sidebar.title("""#
-KEY: 0 - No, 1 - Yes""")
+Check all that applies:""")
 
 def get_user_input():
 
-    Pushback = st.sidebar.slider('Pushback Phase', 0,1)	
-    TaxiingTowing = st.sidebar.slider('Taxiing or Towing', 0,1)	
-    Takeoff = st.sidebar.slider('Take-off or TOGA', 0,1)	
-    InflightPhase = st.sidebar.slider('During Inflight Phase', 0,1)	
-    Landing = st.sidebar.slider('Landing Phase', 0,1)	
-    Parking = st.sidebar.slider('Parking or Parked Phase', 0,1)	
-    Groundhandling_Maintenance = st.sidebar.slider('Maintenance Related During Groundhandling', 0,1)	
-    Groundhandling_Other = st.sidebar.slider('Other Groundhandling ', 0,1)	
-    AircraftLoadRelated = st.sidebar.slider('Issues With Aircraft Load Or Its Planning', 0,1)	
-    OEM_MRO_Related = st.sidebar.slider('OEM or MRO Related', 0,1)	
-    #Runway_NormalOps = st.sidebar.slider('Runway Under Normal Ops', 0,1)	
-    Runway_SpecialOps = st.sidebar.slider('Runway Under Special Ops', 0,1)	
-    Taxiway = st.sidebar.slider('Taxiway', 0,1)	
-    Collision = st.sidebar.slider('Collision', 0,1)	
-    Near_Collision = st.sidebar.slider('Near Collision', 0,1)	
-    Incursion = st.sidebar.slider('Incursion', 0,1)	
-    Excursion = st.sidebar.slider('Excursion', 0,1)	
-    RunwayOverrun = st.sidebar.slider('Runway Overrun', 0,1)	
-    Turbulence = st.sidebar.slider('Turbulence', 0,1)	
-    Weather = st.sidebar.slider('Weather', 0,1)	
-    Aerodrome = st.sidebar.slider('Aerodrome', 0,1)	
-    ATC_Resource = st.sidebar.slider('ATC Resource Issues', 0,1)	
-    ATC_Comms = st.sidebar.slider('ATC Communications Issues', 0,1)	
-    ATC_Actions = st.sidebar.slider('ATC Actions', 0,1)	
-    LossOfSeparation = st.sidebar.slider('Loss Of Separation', 0,1)	
-    TCAS_RA = st.sidebar.slider('TCAS Resolution Advisory', 0,1)	
-    TCAS_TA = st.sidebar.slider('TCAS Traffic Advisory', 0,1)	
-    EGPWS = st.sidebar.slider('EGPWS', 0,1)	
-    Takeoff_Performance = st.sidebar.slider('Take-off Performance', 0,1)	
-    Flight_Performance = st.sidebar.slider('Flight Performance', 0,1)	
-    InflightLossOfControl_Stall = st.sidebar.slider('Loss Of Control During Flight ', 0,1)	
-    MinSafeAltitude = st.sidebar.slider('Minimal Safe Altitude', 0,1)	
-    LandingConfig = st.sidebar.slider('Landing Configuration Or Performance Issues', 0,1)	
-    Crew_Resource = st.sidebar.slider('Flight Crew Resourse Issues', 0,1)	
-    Crew_Comms = st.sidebar.slider('Flight Crew Communications Issues', 0,1)	
-    Crew_Actions = st.sidebar.slider('Flight Crew Actions', 0,1)	
-    InputError = st.sidebar.slider('Input Error or Omission', 0,1)	
-    AircraftDamage_Replaceable = st.sidebar.slider('Aircraft Damage Replaceable', 0,1)	
-    AircraftDamage_MinorRepair = st.sidebar.slider('Aircraft Damage Minor Repair', 0,1)	
-    AircraftDamage_MajorRepair = st.sidebar.slider('Aircraft Damage Major Repair', 0,1)	
-    TailStrike = st.sidebar.slider('Tailstrike', 0,1)	
-    FOD = st.sidebar.slider('FOD', 0,1)	
-    Birdstrike = st.sidebar.slider('Birdstrike', 0,1)	
-    LandingGears = st.sidebar.slider('Landing Gears', 0,1)	
-    HydraulicSystem = st.sidebar.slider('Hydraulic System', 0,1)	
-    FuelSystem = st.sidebar.slider('Fuel System', 0,1)	
-    ElectricalSystem = st.sidebar.slider('Electrical System', 0,1)	
-    FlightControlSystem = st.sidebar.slider('Flight Control System', 0,1)	
-    ElectronicAvionicsRelated = st.sidebar.slider('Electronic or Avionics Related', 0,1)	
-    Engine_Failure = st.sidebar.slider('Engine Failure or Unusable', 0,1)	
-    Engine_Issues = st.sidebar.slider('Engine Issues (Other)', 0,1)	
-    Engine_Damage = st.sidebar.slider('Engine Damage', 0,1)	
-    Parts_Liberated = st.sidebar.slider('Parts Liberated', 0,1)	
-    Smoke_OdourRelated = st.sidebar.slider('Smoke Fumes Odour Related', 0,1)	
-    Fire_Indication = st.sidebar.slider('Fire Indication Alerts', 0,1)	
-    FirePersist = st.sidebar.slider('Fire Indication Persist Despite Actions', 0,1)	
-    Fire_Engines = st.sidebar.slider('Fire (Engines)', 0,1)	
-    Fire_Others = st.sidebar.slider('Fire (Others)', 0,1)	
-    PressurisationRelated = st.sidebar.slider('Pressurisation Related', 0,1)	
-    Emergency_oxy = st.sidebar.slider('Emergency Oxygen Use', 0,1)	
-    Incapacitation = st.sidebar.slider('Incapacitation', 0,1)	
-    Injuries = st.sidebar.slider('Injuries', 0,1)
-       
+    with st.sidebar.expander("Phase of flight"):
+        Pushback = st.checkbox('Pushback Phase')	
+        TaxiingTowing = st.checkbox('Taxiing or Towing')	
+        Takeoff = st.checkbox('Take-off or TOGA')	
+        InflightPhase = st.checkbox('During Inflight Phase')	
+        Landing = st.checkbox('Landing Phase')	
+        Parking = st.checkbox('Parking or Parked Phase')	
+    with st.sidebar.expander("Pre-flight related"):
+        Groundhandling_Maintenance = st.checkbox('Maintenance Related During Groundhandling')	
+        Groundhandling_Other = st.checkbox('Other Groundhandling ')	
+        AircraftLoadRelated = st.checkbox('Issues With Aircraft Load Or Its Planning')
+    with st.sidebar.expander("OEM or MRO related"):	
+        OEM_MRO_Related = st.checkbox('OEM or MRO Related')	
+        #Runway_NormalOps = st.sidebar.checkbox('Runway Under Normal Ops')	
+    with st.sidebar.expander("Aerodrome related"):
+        Runway_SpecialOps = st.checkbox('Runway Under Special Ops')	
+        Taxiway = st.checkbox('Taxiway')	
+        Incursion = st.checkbox('Incursion')	
+        Excursion = st.checkbox('Excursion')	
+        RunwayOverrun = st.checkbox('Runway Overrun')
+        Aerodrome = st.checkbox('Aerodrome')	
+    with st.sidebar.expander("Weather related"):	
+        Turbulence = st.checkbox('Turbulence')	
+        Weather = st.checkbox('Weather')	
+    with st.sidebar.expander("ATC related"):
+        ATC_Resource = st.checkbox('ATC Resource Issues')	
+        ATC_Comms = st.checkbox('ATC Communications Issues')	
+        ATC_Actions = st.checkbox('ATC Actions')
+    with st.sidebar.expander("Separation related"):	
+        LossOfSeparation = st.checkbox('Loss Of Separation')	
+        TCAS_RA = st.checkbox('TCAS Resolution Advisory')	
+        TCAS_TA = st.checkbox('TCAS Traffic Advisory')	
+        EGPWS = st.checkbox('EGPWS')	
+    with st.sidebar.expander("Flight performance related"):
+        Takeoff_Performance = st.checkbox('Take-off Performance')	
+        Flight_Performance = st.checkbox('Flight Performance')	
+        InflightLossOfControl_Stall = st.checkbox('Loss Of Control During Flight ')	
+        MinSafeAltitude = st.checkbox('Minimal Safe Altitude')	
+        LandingConfig = st.checkbox('Landing Configuration Or Performance Issues')
+    with st.sidebar.expander("Flight crew related"):	
+        Crew_Resource = st.checkbox('Flight Crew Resourse Issues')	
+        Crew_Comms = st.checkbox('Flight Crew Communications Issues')	
+        Crew_Actions = st.checkbox('Flight Crew Actions')	
+    with st.sidebar.expander("Input error or Omission by any party"):
+        InputError = st.checkbox('Input Error or Omission')	
+    with st.sidebar.expander("Aircraft damage assessment"):
+        AircraftDamage_Replaceable = st.checkbox('Aircraft Damage Replaceable')	
+        AircraftDamage_MinorRepair = st.checkbox('Aircraft Damage Minor Repair')	
+        AircraftDamage_MajorRepair = st.checkbox('Aircraft Damage Major Repair')	
+        TailStrike = st.checkbox('Tailstrike')	
+        FOD = st.checkbox('FOD')	
+        Birdstrike = st.checkbox('Birdstrike')
+        Collision = st.checkbox('Collision')	
+        Near_Collision = st.checkbox('Near Collision')	
+    with st.sidebar.expander("Aircraft system related"):	
+        LandingGears = st.checkbox('Landing Gears')	
+        HydraulicSystem = st.checkbox('Hydraulic System')	
+        FuelSystem = st.checkbox('Fuel System')	
+        ElectricalSystem = st.checkbox('Electrical System')	
+        FlightControlSystem = st.checkbox('Flight Control System')	
+        ElectronicAvionicsRelated = st.checkbox('Electronic or Avionics Related')
+    with st.sidebar.expander("Engine issues"):	
+        Engine_Failure = st.checkbox('Engine Failure or Unusable')	
+        Engine_Issues = st.checkbox('Engine Issues (Other)')	
+        Engine_Damage = st.checkbox('Engine Damage')	
+    with st.sidebar.expander("Parts liberated from aircraft/engine"):
+        Parts_Liberated = st.checkbox('Parts Liberated')
+    with st.sidebar.expander("Fire/Smoke/Odour related"):	
+        Smoke_OdourRelated = st.checkbox('Smoke Fumes Odour Related')	
+        Fire_Indication = st.checkbox('Fire Indication Alerts')	
+        FirePersist = st.checkbox('Fire Indication Persist Despite Actions')	
+        Fire_Engines = st.checkbox('Fire (Engines)')	
+        Fire_Others = st.checkbox('Fire (Others)')
+    with st.sidebar.expander("Pressurisation related issues"):	
+        PressurisationRelated = st.checkbox('Pressurisation Related')	
+        Emergency_oxy = st.checkbox('Emergency Oxygen Use')	
+    with st.sidebar.expander("Incapacitation/Injuries"):
+        Incapacitation = st.checkbox('Incapacitation')	
+        Injuries = st.checkbox('Injuries')
+        
 
-    user_data = {
-        'Pushback Phase' : Pushback,	
-        'Taxiing or Towing' : TaxiingTowing,	
-        'Take-off or TOGA' : Takeoff,	
-        'During Inflight Phase' : InflightPhase,	
-        'Landing Phase' : Landing,	
-        'Parking or Parked Phase' : Parking,	
-        'Maintenance Related During Groundhandling' : Groundhandling_Maintenance,	
-        'Other Groundhandling' : Groundhandling_Other,
-        'Issues With Aircraft Load Or Its Planning' : AircraftLoadRelated,	
-        'OEM or MRO Related' : OEM_MRO_Related,	
-        #'Runway Under Normal Ops' : Runway_NormalOps,	
-        'Runway Under Special Ops' : Runway_SpecialOps,	
-        'Taxiway' : Taxiway,	
-        'Collision' : Collision,	
-        'Near Collision' : Near_Collision,	
-        'Incursion' : Incursion,	
-        'Excursion' : Excursion,	
-        'Runway Overrun' : RunwayOverrun,	
-        'Turbulence' : Turbulence,	
-        'Weather' : Weather,	
-        'Aerodrome' : Aerodrome,	
-        'ATC Resource Issues' : ATC_Resource,	
-        'ATC Communications Issues' : ATC_Comms,	
-        'ATC Actions' : ATC_Actions,	
-        'Loss Of Separation' : LossOfSeparation,	
-        'TCAS Resolution Advisory' : TCAS_RA,	
-        'TCAS Traffic Advisory' : TCAS_TA,	
-        'EGPWS' : EGPWS,	
-        'Take-off Performance' : Takeoff_Performance,	
-        'Flight Performance' : Flight_Performance,	
-        'Loss Of Control During Flight' : InflightLossOfControl_Stall,	
-        'Minimal Safe Altitude' : MinSafeAltitude, 
-        'Landing Configuration Or Performance Issues' : LandingConfig, 
-        'Flight Crew Resourse Issues' : Crew_Resource, 
-        'Flight Crew Communications Issues' : Crew_Comms, 
-        'Flight Crew Actions' : Crew_Actions, 
-        'Input Error or Omission' : InputError, 
-        'Aircraft Damage Replaceable' : AircraftDamage_Replaceable, 
-        'Aircraft Damage Minor Repair' : AircraftDamage_MinorRepair, 
-        'Aircraft Damage Major Repair' : AircraftDamage_MajorRepair, 
-        'TailStrike' : TailStrike,	
-        'FOD' : FOD,	
-        'Birdstrike' : Birdstrike,	
-        'Landing Gears' : LandingGears,	
-        'Hydraulic System' : HydraulicSystem,	
-        'Fuel System' : FuelSystem,	
-        'Electrical System' : ElectricalSystem,	
-        'Flight Control System' : FlightControlSystem,	
-        'Electronic or Avionics Related' : ElectronicAvionicsRelated,	
-        'Engine Failure or Unusable' : Engine_Failure,	
-        'Engine Issues (Other)' : Engine_Issues,	
-        'Engine Damage' : Engine_Damage,	
-        'Parts Liberated' : Parts_Liberated,	
-        'Smoke Fumes Odour Related' : Smoke_OdourRelated,	
-        'Fire Indication Alerts' : Fire_Indication,
-        'Fire Indication Persist Despite Actions' : FirePersist,
-        'Fire (Engines)' : Fire_Engines,
-        'Fire (Others)' : Fire_Others,
-        'Pressurisation Related' : PressurisationRelated,	
-        'Emergency Oxygen Use' : Emergency_oxy,	
-        'Incapacitation' : Incapacitation,	
-        'Injuries' : Injuries,
-    }
+        user_data = {
+            'Pushback Phase' : Pushback,	
+            'Taxiing or Towing' : TaxiingTowing,	
+            'Take-off or TOGA' : Takeoff,	
+            'During Inflight Phase' : InflightPhase,	
+            'Landing Phase' : Landing,	
+            'Parking or Parked Phase' : Parking,	
+            'Maintenance Related During Groundhandling' : Groundhandling_Maintenance,	
+            'Other Groundhandling' : Groundhandling_Other,
+            'Issues With Aircraft Load Or Its Planning' : AircraftLoadRelated,	
+            'OEM or MRO Related' : OEM_MRO_Related,	
+            #'Runway Under Normal Ops' : Runway_NormalOps,	
+            'Runway Under Special Ops' : Runway_SpecialOps,	
+            'Taxiway' : Taxiway,	
+            'Incursion' : Incursion,	
+            'Excursion' : Excursion,	
+            'Runway Overrun' : RunwayOverrun,	
+            'Aerodrome' : Aerodrome,	
+            'Turbulence' : Turbulence,	
+            'Weather' : Weather,	
+            'ATC Resource Issues' : ATC_Resource,	
+            'ATC Communications Issues' : ATC_Comms,	
+            'ATC Actions' : ATC_Actions,	
+            'Loss Of Separation' : LossOfSeparation,	
+            'TCAS Resolution Advisory' : TCAS_RA,	
+            'TCAS Traffic Advisory' : TCAS_TA,	
+            'EGPWS' : EGPWS,	
+            'Take-off Performance' : Takeoff_Performance,	
+            'Flight Performance' : Flight_Performance,	
+            'Loss Of Control During Flight' : InflightLossOfControl_Stall,	
+            'Minimal Safe Altitude' : MinSafeAltitude, 
+            'Landing Configuration Or Performance Issues' : LandingConfig, 
+            'Flight Crew Resourse Issues' : Crew_Resource, 
+            'Flight Crew Communications Issues' : Crew_Comms, 
+            'Flight Crew Actions' : Crew_Actions, 
+            'Input Error or Omission' : InputError, 
+            'Aircraft Damage Replaceable' : AircraftDamage_Replaceable, 
+            'Aircraft Damage Minor Repair' : AircraftDamage_MinorRepair, 
+            'Aircraft Damage Major Repair' : AircraftDamage_MajorRepair, 
+            'TailStrike' : TailStrike,	
+            'FOD' : FOD,	
+            'Birdstrike' : Birdstrike,	
+            'Collision' : Collision,	
+            'Near Collision' : Near_Collision,	
+            'Landing Gears' : LandingGears,	
+            'Hydraulic System' : HydraulicSystem,	
+            'Fuel System' : FuelSystem,	
+            'Electrical System' : ElectricalSystem,	
+            'Flight Control System' : FlightControlSystem,	
+            'Electronic or Avionics Related' : ElectronicAvionicsRelated,	
+            'Engine Failure or Unusable' : Engine_Failure,	
+            'Engine Issues (Other)' : Engine_Issues,	
+            'Engine Damage' : Engine_Damage,	
+            'Parts Liberated' : Parts_Liberated,	
+            'Smoke Fumes Odour Related' : Smoke_OdourRelated,	
+            'Fire Indication Alerts' : Fire_Indication,
+            'Fire Indication Persist Despite Actions' : FirePersist,
+            'Fire (Engines)' : Fire_Engines,
+            'Fire (Others)' : Fire_Others,
+            'Pressurisation Related' : PressurisationRelated,	
+            'Emergency Oxygen Use' : Emergency_oxy,	
+            'Incapacitation' : Incapacitation,	
+            'Injuries' : Injuries,
+        }
 
 # Transform user data into dataframe
     features = pd.DataFrame(user_data, index = [0])
@@ -230,47 +247,11 @@ elif Y_predict == 0 :
     Y_predict = str('an Incident')
 
 
-st.subheader(f"""Classification (predicted up to {accuracy}% accuracy):
+st.subheader(f"""AI Classification Result:
 The occurrence is:""")
 st.write(Y_predict)
 
 
-# Streamlit code (ERC section)
-st.title("""ICAO Serious Incident Classification Method
-Use this method in conjunction with the TSIB AI Occurrence Classifier.
-If the result between the AI Classifier and the ICAO method differs, consider if the more severe classification is warranted.""")
-
-option1 = st.selectbox(
-     'Was there a credible scenario by which this occurrence could have escalated to an "Accident"?',
-     ('No', 'Yes'))
-
-st.write('Could have escalated to an accident:', option1)
-
-option2 = st.selectbox(
-     'After assessing the remaining defences between this occurrence and the potential credible accident, was the defences "Effective - several defences prevented accident" or "Limited - few or no defences and accident only avoided due to luck"?',
-     ('Effective', 'Limited'))
-
-st.write('Remaining defences were:', option2)
-
-
-if option1 == 'No':
-    icao_ans = str('an Incident')
-elif (option1 == 'Yes') and (option2 == 'Effective'):
-    icao_ans = str('an Incident')
-elif (option1 == 'Yes') and (option2 == 'Limited'):
-    icao_ans = str('a Serious Incident')
-
-st.subheader(f"""ICAO Classification Method:
-The occurrence is:""")
-st.write(icao_ans)
-
-print(icao_ans)
-print(Y_predict)
-
-
-if (Y_predict != icao_ans) and (Y_predict == 'No input has been provided yet.'):
-    st.subheader(""" """)
-elif Y_predict != icao_ans:
-    st.subheader("""**_There is a difference detected between the AI Classifier and the ICAO Classification Method_**""")
+print(Y_predict + '\n')
 
 # End of code
