@@ -193,7 +193,7 @@ def get_user_input():
         }
 
 # Transform user data into dataframe
-    features = pd.DataFrame(user_data, index = [0])
+    features = pd.DataFrame(user_data, index = ["Parameter entered"])
     return features
 
 
