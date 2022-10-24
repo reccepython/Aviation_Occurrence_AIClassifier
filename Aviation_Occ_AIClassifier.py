@@ -86,7 +86,7 @@ def get_user_input():
         MinSafeAltitude = st.checkbox('Minimal Safe Altitude')	
         LandingConfig = st.checkbox('Landing Configuration Or Performance Issues')
     with st.sidebar.expander("Flight crew related"):	
-        Crew_Resource = st.checkbox('Flight Crew Resourse Issues')	
+        Crew_Resource = st.checkbox('Flight Crew Resource Issues')	
         Crew_Comms = st.checkbox('Flight Crew Communications Issues')	
         Crew_Actions = st.checkbox('Flight Crew Actions')	
     with st.sidebar.expander("Input error or Omission by any party"):
@@ -159,7 +159,7 @@ def get_user_input():
             'Loss Of Control During Flight' : InflightLossOfControl_Stall,	
             'Minimal Safe Altitude' : MinSafeAltitude, 
             'Landing Configuration Or Performance Issues' : LandingConfig, 
-            'Flight Crew Resourse Issues' : Crew_Resource, 
+            'Flight Crew Resource Issues' : Crew_Resource, 
             'Flight Crew Communications Issues' : Crew_Comms, 
             'Flight Crew Actions' : Crew_Actions, 
             'Input Error or Omission' : InputError, 
