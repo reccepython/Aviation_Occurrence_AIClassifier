@@ -36,7 +36,7 @@ Y = data['Inc_SInc']
 
 
 # Create training and test split
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.25, random_state=2, stratify=Y)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2, random_state=5, stratify=Y)
 
 
 # Get user input parameters
@@ -218,7 +218,21 @@ X_train = sc.transform(X_train)
 X_test = sc.transform(X_test)
 
 
-svc = SVC(C=1.0, random_state=1, kernel='linear')
+# Find the optimal combination of hyperparameters using scikit-learn’s grid search function.
+# Instantiate grid
+import numpy as np
+grid = {'C': np.linspace(1, 10, 10), 'kernel': ['linear', 'poly', 'rbf', 'sigmoid']}
+# Instantiate GridSearchCV model
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+model = GridSearchCV(SVC(gamma='auto'), grid, scoring='f1', cv=5)
+# Fit the gridsearch model
+model.fit(X_train, y_train)
+# Print the best parameters
+best_parameters = model.best_params_
+print("SVC best parameters is:", best_parameters)
+# Adjust the hyperparameters
+svc = SVC(C=1.0, random_state=2, kernel='linear')
  
 
 # Fit the model
@@ -231,7 +245,7 @@ print(accuracy_score(SVC_prediction, y_test))
 print(confusion_matrix(SVC_prediction, y_test))
 
 
-# Show model accuracy on app
+# Show model accuracy on app (not used)
 accuracy = str(round(accuracy_score(SVC_prediction, y_test)*100, 1))
 
 # Show the prediction
@@ -246,11 +260,10 @@ if Y_predict == 1:
 elif Y_predict == 0 :
     Y_predict = str('an Incident')
 
-
+# Display AI result
 st.subheader(f"""AI Classification Result:
 The occurrence is:""")
 st.write(Y_predict)
-
 
 print(Y_predict + '\n')
 
