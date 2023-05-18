@@ -18,6 +18,26 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
 
+
+# Menu appearance
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            footer:after {
+	content:'The creator of this app cannot guarantee the accuracy of all results, it is advisable to use this app with other classification methods.'; 
+	visibility: visible;
+	display: block;
+	position: relative;
+	#background-color: red;
+	padding: 5px;
+	top: 2px;
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+
+
 # Streamlit code
 st.title('TSIB AI Occurrence Classifier')
 st.write("""
