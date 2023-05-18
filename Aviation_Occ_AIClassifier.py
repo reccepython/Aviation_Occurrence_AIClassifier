@@ -31,7 +31,7 @@ hide_streamlit_style = """
 	display: block;
 	position: relative;
 	#background-color: red;
-	padding: 55px;
+	padding: 20px;
     right: 50px;
 	top: 2px;
             </style>
