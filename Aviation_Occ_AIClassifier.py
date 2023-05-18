@@ -32,7 +32,7 @@ hide_streamlit_style = """
 	position: relative;
 	#background-color: red;
 	padding: 20px;
-    right: 50px;
+    right: 30px;
 	top: 2px;
             </style>
             """
