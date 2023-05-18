@@ -23,6 +23,7 @@ from sklearn.metrics import confusion_matrix
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
+            header {visibility: hidden;}
             footer {visibility: hidden;}
             footer:after {
 	content:'The creator of this app cannot guarantee the accuracy of all results, it is advisable to use this app with other classification methods.'; 
@@ -32,7 +33,6 @@ hide_streamlit_style = """
 	#background-color: red;
 	padding: 5px;
 	top: 2px;
-            header {visibility: hidden;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
