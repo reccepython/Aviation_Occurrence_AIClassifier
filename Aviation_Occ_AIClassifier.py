@@ -40,7 +40,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 
 # Streamlit code
-st.title('TSIB AI Occurrence Classifier')
+st.title('AI Occurrence Classifier')
 st.write("""
 # Occurrence classification using Machine Learning
 Determines if an event is an "Incident" or "Serious Incident"
